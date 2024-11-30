@@ -51,7 +51,7 @@ export const Recovering_block = () => {
                         <input
                             type="email"
                             id="email"
-                            className="w-full h-[40px] px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                            className="w-full h-[40px] px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 ease-out transform hover:scale-105"
                             placeholder="Введите ваш email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -59,7 +59,7 @@ export const Recovering_block = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full h-[45px] bg-neutral-950 text-primary-50 rounded-md font-medium hover:bg-neutral-900"
+                        className="w-full h-[45px] bg-neutral-950 text-primary-50 rounded-md font-medium hover:bg-neutral-900 transition-all duration-300 ease-out transform hover:scale-105"
                     >
                         Отправить
                     </button>
@@ -69,7 +69,7 @@ export const Recovering_block = () => {
                 </form>
                 <a
                     href="/login"
-                    className="text-sm text-black hover:text-primary-500 text-center mt-2 hover:underline"
+                    className="text-sm text-black hover:text-primary-500 text-center mt-2 hover:underline transition-all duration-300 ease-out transform hover:scale-105"
                 >
                     Вернуться на вход
                 </a>

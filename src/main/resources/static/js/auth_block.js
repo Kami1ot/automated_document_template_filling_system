@@ -59,7 +59,7 @@ export const Auth_block = ({ onLogin }) => {
 						<input
 							type="email"
 							id="email"
-							className="w-full h-[40px] px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+							className="w-full h-[40px] px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 ease-out transform hover:scale-105"
 							placeholder="Введите ваш email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
@@ -72,7 +72,7 @@ export const Auth_block = ({ onLogin }) => {
 						<input
 							type="password"
 							id="password"
-							className="w-full h-[40px] px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+							className="w-full h-[40px] px-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 ease-out transform hover:scale-105"
 							placeholder="Введите ваш пароль"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
@@ -80,7 +80,7 @@ export const Auth_block = ({ onLogin }) => {
 					</div>
 					<button
 						type="submit"
-						className="w-full h-[45px] bg-neutral-950 text-primary-50 rounded-md font-medium hover:bg-neutral-900"
+						className="w-full h-[45px] bg-neutral-950 text-primary-50 rounded-md font-medium hover:bg-neutral-900 transition-all duration-300 ease-out transform hover:scale-105"
 					>
 						Войти
 					</button>
@@ -89,12 +89,12 @@ export const Auth_block = ({ onLogin }) => {
 					)}
 					<a
 						href="/recovering"
-						className="text-sm text-black hover:text-primary-500 text-center mt-2 hover:underline"
+						className="text-sm text-black hover:text-primary-500 text-center mt-2 hover:underline transition-all duration-300 ease-out transform hover:scale-105"
 					>
 						Забыли пароль?
 					</a>
 				</form>
-				<div className="mt-6 text-sm">
+				<div className="mt-6 text-sm transition-all duration-300 ease-out transform hover:scale-105">
 					<span>Нет аккаунта? </span>
 					<a href="/register" className="text-primary-500 font-medium hover:underline">
 						Зарегистрироваться

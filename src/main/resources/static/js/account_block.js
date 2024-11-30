@@ -43,7 +43,7 @@ export const Account_block = ({ isAuthenticated, userEmail }) => {
 								type="email"
 								id="email"
 								value={userEmail}
-								className="w-full px-4 py-2 border border-neutral-300 rounded-md bg-neutral-200 cursor-not-allowed"
+								className="w-full px-4 py-2 border border-neutral-300 rounded-md bg-neutral-200 cursor-not-allowed transition-all duration-300 ease-out transform hover:scale-105"
 								readOnly
 							/>
 						</div>
@@ -55,7 +55,7 @@ export const Account_block = ({ isAuthenticated, userEmail }) => {
 								type="password"
 								id="password"
 								placeholder="Enter new password"
-								className="w-full px-4 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring focus:ring-primary-500"
+								className="w-full px-4 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring focus:ring-primary-500 transition-all duration-300 ease-out transform hover:scale-105"
 								value={newPassword}
 								onChange={(e) => setNewPassword(e.target.value)}
 							/>

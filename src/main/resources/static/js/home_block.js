@@ -12,16 +12,16 @@ export const Home_block = () => {
 						<div className="w-full mb-6">
 							<h3 className="text-lg font-bold mb-2">Создатель:</h3>
 							<ul className="list-disc pl-6 text-sm">
-								<li>Петр Овчинников</li>
+								<li className="transition-all duration-300 ease-out transform hover:scale-105">Петр Овчинников</li>
 							</ul>
 							<h3 className="text-lg font-bold mb-2"> Ссылки:</h3>
 							<ul className="list-disc pl-6 text-sm">
-								<li className="hover:underline"><a href="https://github.com/Kami1ot">Github</a></li>
-								<li className="hover:underline"><a href="https://t.me/kamiloty">Telegramm</a></li>
+								<li className="hover:underline transition-all duration-300 ease-out transform hover:scale-105"><a href="https://github.com/Kami1ot">Github</a></li>
+								<li className="hover:underline transition-all duration-300 ease-out transform hover:scale-105"><a href="https://t.me/kamiloty">Telegramm</a></li>
 							</ul>
 
 						</div>
-						<button className="bg-black text-white py-3 px-6 rounded-md w-full font-bold">
+						<button className="bg-black text-white py-3 px-6 rounded-md w-full font-bold transition-all duration-300 ease-out transform hover:scale-105">
 						Приступить
     	  </button>
     	</div> 
