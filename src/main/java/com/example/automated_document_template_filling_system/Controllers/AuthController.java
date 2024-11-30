@@ -30,9 +30,8 @@ public class AuthController {
     @PostMapping("/login")
     @ResponseBody
     public String login(@RequestParam String email, @RequestParam String password) {
-        String output  = authService.authenticate(email, password);
 
-        return output;
+        return authService.authenticate(email, password);
     }
 
     @PostMapping("/register")
@@ -64,4 +63,20 @@ public class AuthController {
         return "Ваш пароль успешно отправлен на почту";
 
     }
+
+    @PostMapping("/update-password")
+    public String updatePassword(@RequestParam String email, @RequestParam String newPassword) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+
+        if (userOptional.isEmpty()) {
+            return "Пользователь не найден";
+        }
+
+        User user = userOptional.get();
+        user.setPassword(passwordEncoder.encode(newPassword)); // Хэшируем новый пароль
+        userRepository.save(user);
+
+        return "Пароль успешно обновлен";
+    }
+
 }

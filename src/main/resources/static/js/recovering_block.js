@@ -16,7 +16,7 @@ export const Recovering_block = () => {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
-                body: new URLSearchParams({ email}),
+                body: new URLSearchParams({ email }),
             });
 
             if (response.ok) {
@@ -33,10 +33,12 @@ export const Recovering_block = () => {
             setMessage("Ошибка соединения с сервером");
         }
     };
+
     return (
         <div className="flex flex-col items-center mt-2">
             <div
-                className="w-[400px] bg-white text-neutral-950 shadow-lg border border-neutral-300 rounded-lg min-h-[500px] flex flex-col items-center justify-center">
+                className="w-[400px] bg-white/75 text-neutral-950 shadow-lg border border-neutral-300 rounded-lg min-h-[300px] flex flex-col items-center justify-center backdrop-blur-lg"
+            >
                 <h1 className="text-3xl font-title mb-6">Забыли пароль?</h1>
                 <form
                     className="w-[300px] flex flex-col gap-4 justify-center"
@@ -59,7 +61,7 @@ export const Recovering_block = () => {
                         type="submit"
                         className="w-full h-[45px] bg-neutral-950 text-primary-50 rounded-md font-medium hover:bg-neutral-900"
                     >
-                        Далее
+                        Отправить
                     </button>
                     {message && (
                         <div className="mt-4 text-center text-red-500">{message}</div>
@@ -69,10 +71,9 @@ export const Recovering_block = () => {
                     href="/login"
                     className="text-sm text-black hover:text-primary-500 text-center mt-2 hover:underline"
                 >
-                    Уже есть аккаунт?
+                    Вернуться на вход
                 </a>
             </div>
         </div>
-                )
-                ;
-                };
+    );
+};

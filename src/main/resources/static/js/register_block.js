@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"; // Для перенаправл
 import "./style.css";
 
 export const Register_block = () => {
-	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
@@ -47,7 +46,7 @@ export const Register_block = () => {
 
 	return (
 		<div className="flex flex-col items-center mt-2">
-			<div className="w-[400px] bg-white text-neutral-950 shadow-lg border border-neutral-300 rounded-lg min-h-[600px] flex flex-col items-center justify-center">
+			<div className="w-[400px] bg-white/75 text-neutral-950 shadow-lg border border-neutral-300 rounded-lg min-h-[500px] flex flex-col items-center justify-center backdrop-blur-lg">
 				<h1 className="text-3xl font-title font-bold mb-6">Регистрация</h1>
 				<form className="w-[300px] flex flex-col gap-4" onSubmit={handleRegister}>
 					<div className="flex flex-col">

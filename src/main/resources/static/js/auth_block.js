@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-export const Auth_block = () => {
+export const Auth_block = ({ onLogin }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [message, setMessage] = useState("");
@@ -23,6 +23,14 @@ export const Auth_block = () => {
 			if (response.ok) {
 				const result = await response.text();
 				if (result === "Успешная аутентификация") {
+					// Сохраняем данные в localStorage
+					localStorage.setItem("isAuthenticated", "true");
+					localStorage.setItem("userEmail", email);
+
+					// Обновляем состояние авторизации в App
+					onLogin(true, email);
+
+					// Переход на главную страницу
 					navigate("/home");
 				} else {
 					setMessage(result);
@@ -38,7 +46,7 @@ export const Auth_block = () => {
 	return (
 		<div className="flex flex-col items-center mt-2">
 			<div
-				className="w-[400px] bg-white text-neutral-950 shadow-lg border border-neutral-300 rounded-lg min-h-[500px] flex flex-col items-center justify-center">
+				className="w-[400px] bg-white/75 text-neutral-950 shadow-lg border border-neutral-300 rounded-lg min-h-[500px] flex flex-col items-center justify-center backdrop-blur-lg">
 				<h1 className="text-3xl font-title mb-6">Вход</h1>
 				<form
 					className="w-[300px] flex flex-col gap-4 justify-center"
@@ -92,8 +100,7 @@ export const Auth_block = () => {
 						Зарегистрироваться
 					</a>
 				</div>
+			</div>
 		</div>
-</div>
-)
-	;
+	);
 };
