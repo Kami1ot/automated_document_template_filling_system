@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 export const Account_block = ({ isAuthenticated, userEmail }) => {
 	const [newPassword, setNewPassword] = useState("");
 	const [message, setMessage] = useState("");
+	const navigate = useNavigate();
 
 	const handleUpdatePassword = async () => {
 		try {
@@ -73,19 +75,19 @@ export const Account_block = ({ isAuthenticated, userEmail }) => {
 				</div>
 			) : (
 				<div className="w-[400px] bg-white/75 text-neutral-950 shadow-lg border border-neutral-300 rounded-lg min-h-[200px] flex flex-col items-center justify-center backdrop-blur-lg p-6">
-					<h1 className="text-xl text-red-500 font-bold mb-4">
+					<h1 className="text-xl text-red-500 mb-4">
 						Вы не вошли в аккаунт
 					</h1>
 					<div className="flex flex-col gap-2 w-full">
 						<button
 							onClick={() => navigate("/login")}
-							className="w-full bg-primary-500 text-primary-50 py-2 rounded-md hover:bg-primary-600"
+							className="w-full bg-neutral-950 text-primary-50 py-2 rounded-md hover:bg-neutral-900 transition-all duration-300 ease-out transform hover:scale-105"
 						>
 							Войти
 						</button>
 						<button
 							onClick={() => navigate("/register")}
-							className="w-full bg-neutral-950 text-primary-50 py-2 rounded-md hover:bg-neutral-900"
+							className="w-full bg-neutral-950 text-primary-50 py-2 rounded-md hover:bg-neutral-900 transition-all duration-300 ease-out transform hover:scale-105"
 						>
 							Зарегистрироваться
 						</button>
