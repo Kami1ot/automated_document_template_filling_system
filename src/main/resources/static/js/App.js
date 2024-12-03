@@ -6,6 +6,7 @@ import { Register_block } from "./register_block";
 import { Recovering_block } from "./recovering_block";
 import { Home_block } from "./home_block";
 import {Account_block} from "./account_block";
+import { Templates_block } from "./templates_block";
 
 export const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -35,6 +36,7 @@ export const App = () => {
                 <Route path="/register" element={<Register_block />} />
                 <Route path="/recovering" element={<Recovering_block />} />
                 <Route path="/account" element={<Account_block isAuthenticated={isAuthenticated} userEmail={userEmail} />} />
+                <Route path="/templates" element={<Templates_block isAuthenticated={isAuthenticated} userEmail={userEmail} />} />
             </Routes>
         </BrowserRouter>
     );

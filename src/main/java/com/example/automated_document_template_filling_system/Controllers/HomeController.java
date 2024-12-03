@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping({"/login", "/register", "/home", "/recovering", "/account"})
+    @GetMapping({"/login", "/register", "/home", "/recovering", "/account", "/templates"})
     public String index() {
         // Возвращаем auth.html для всех этих маршрутов
         return "auth";

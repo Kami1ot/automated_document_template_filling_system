@@ -1,0 +1,219 @@
+import React fromField "react";
+import "./style.css";
+
+const InvoiceTemplate = ({ formData, handleInputChange }) => {
+return (
+<div className="bg-white/75 shadow-lg rounded-lg p-6 text-xs">
+    <div className="">
+        <div className="text-right">
+                    <span>
+                        Приложение № 1<br/>
+                        к постановлению Правительства<br/>
+                        Российской Федерации<br/>
+                        от 26.12.2011 № 1137
+                    </span>
+        </div>
+        <div className="text-left w-2/4">
+            <div className="max-h-[22px] text-xs">
+                СЧЕТ-ФАКТУРА № <input type="text"
+                                      className="border border-black rounded px-0.5 py-0.5 w-32 placeholder-gray-500 text-xs"
+                                      placeholder="Номер"
+                                      value={formData.invoiceNumber || ""}
+                onChange={(e) => handleInputChange("invoiceNumber", e.target.value)}/> от
+                <input type="date"
+                       className="border border-black rounded px-0.5 py-0.5 w-32 placeholder-gray-500 text-xs"
+                       placeholder="Дата"
+                       value={formData.invoiceDate || ""}
+                onChange={(e) => handleInputChange("invoiceDate", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                ИСПРАВЛЕНИЕ № <input type="text"
+                                     className="border border-black rounded px-0.5 py-0.5 w-32 placeholder-gray-500 text-xs"
+                                     placeholder="Номер"
+                                     value={formData.invoiceTypoNumber || ""}
+                onChange={(e) => handleInputChange("invoiceTypoNumber", e.target.value)}/> от
+                <input type="date"
+                       className="border border-black rounded px-0.5 py-0.5 w-32 placeholder-gray-500 text-xs"
+                       placeholder="Дата"
+                       value={formData.invoiceTypoDate || ""}
+                onChange={(e) => handleInputChange("invoiceTypoDate", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                Продавец <input type="text" placeholder="Продавец"
+                                className="border border-black rounded px-0.5 py-0.5 w-3/5 placeholder-gray-500 text-xs"
+                                value={formData.SellerName || ""}
+                onChange={(e) => handleInputChange("SellerName", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                Адрес <input type="text" placeholder="Город, Улица, Дом"
+                             className="border border-black rounded px-0.5 py-0.5 w-3/5 placeholder-gray-500 text-xs"
+                             value={formData.SellerAdress || ""}
+                onChange={(e) => handleInputChange("SellerAdress", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                ИНН/КПП продавца <input type="text" placeholder="ИНН/КПП"
+                                        className="border border-black rounded px-0.5 py-0.5 w-3/5 placeholder-gray-500 text-xs"
+                                        value={formData.SellerIIN || ""}
+                onChange={(e) => handleInputChange("SellerIIN", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                Грузоотправитель и его адрес <input type="text" placeholder="Компания, ее Адрес"
+                                                    className="border border-black rounded px-0.5 py-0.5 w-3/5 placeholder-gray-500 text-xs"
+                                                    value={formData.From || ""}
+                onChange={(e) => handleInputChange("From", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                Грузополучатель и его адрес <input type="text" placeholder="Компания, ее Адрес"
+                                                   className="border border-black rounded px-0.5 py-0.5 w-3/5 placeholder-gray-500 text-xs"
+                                                   value={formData.Where || ""}
+                onChange={(e) => handleInputChange("Where", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                К платежно-расчетному документу № <input type="text"
+                                                         className="border border-black rounded px-0.5 py-0.5 w-32 placeholder-gray-500 text-xs"
+                                                         placeholder="Номер"
+                                                         value={formData.PayNumber || ""}
+                onChange={(e) => handleInputChange("PayNumber", e.target.value)}/> от
+                <input type="date"
+                       className="border border-black rounded px-0.5 py-0.5 w-32 placeholder-gray-500 text-xs"
+                       placeholder="Дата"
+                       value={formData.PayDate || ""}
+                onChange={(e) => handleInputChange("PayDate", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                Покупатель <input type="text" placeholder="Покупатель"
+                                  className="border border-black rounded px-0.5 py-0.5 w-3/5 placeholder-gray-500 text-xs"
+                                  value={formData.BuyerName || ""}
+                onChange={(e) => handleInputChange("BuyerName", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                Адрес <input type="text" placeholder="Город, Улица, Дом"
+                             className="border border-black rounded px-0.5 py-0.5 w-3/5 placeholder-gray-500 text-xs"
+                             value={formData.BuyerAdress || ""}
+                onChange={(e) => handleInputChange("BuyerAdress", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                ИНН/КПП покупателя <input type="text" placeholder="ИНН/КПП"
+                                          className="border border-black rounded px-0.5 py-0.5 w-3/5 placeholder-gray-500 text-xs"
+                                          value={formData.BuyerIIN || ""}
+                onChange={(e) => handleInputChange("BuyerIIN", e.target.value)}/>
+            </div>
+            <br/>
+            <div className="max-h-[22px] text-xs">
+                Валюта: наименование, код <input type="text" placeholder="Наименование, Код"
+                                                 className="border border-black rounded px-0.5 py-0.5 w-3/5 placeholder-gray-500 text-xs"
+                                                 value={formData.Сurrency || ""}
+                onChange={(e) => handleInputChange("Сurrency", e.target.value)}/>
+            </div>
+        </div>
+
+
+    </div>
+    <br/>
+    <table border="1" className="w-full text-center border-collapse border border-gray-300 text-xs">
+        <thead>
+        <tr>
+            <th rowSpan="2" className="border border-gray-300 px-2 py-1">
+                Наименование товара (описание выполненных работ, оказанных услуг), имущественного права
+            </th>
+            <th colSpan="2" className="border border-gray-300 px-2 py-1">
+                Единица измерения
+            </th>
+            <th rowSpan="2" className="border border-gray-300 px-2 py-1">
+                Количество (объем)
+            </th>
+            <th rowSpan="2" className="border border-gray-300 px-2 py-1">
+                Цена (тариф) за единицу измерения
+            </th>
+            <th rowSpan="2" className="border border-gray-300 px-2 py-1">
+                Стоимость товаров (работ, услуг), имущественных прав без налога - всего
+            </th>
+            <th rowSpan="2" className="border border-gray-300 px-2 py-1">
+                В том числе сумма акциза
+            </th>
+            <th rowSpan="2" className="border border-gray-300 px-2 py-1">
+                Налоговая ставка
+            </th>
+            <th rowSpan="2" className="border border-gray-300 px-2 py-1">
+                Сумма налога, предъявляемая покупателю
+            </th>
+            <th rowSpan="2" className="border border-gray-300 px-2 py-1">
+                Стоимость товаров (работ, услуг), имущественных прав с налогом - всего
+            </th>
+            <th colSpan="2" className="border border-gray-300 px-2 py-1">
+                Страна происхождения товара
+            </th>
+            <th rowSpan="2" className="border border-gray-300 px-2 py-1">
+                Номер таможенной декларации
+            </th>
+        </tr>
+        <tr>
+            <th className="border border-gray-300 px-2 py-1">Код</th>
+            <th className="border border-gray-300 px-2 py-1">
+                Условное обозначение (национальное)
+            </th>
+            <th className="border border-gray-300 px-2 py-1">Цифровой код</th>
+            <th className="border border-gray-300 px-2 py-1">Краткое наименование</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="text" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="text" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="text" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="number" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="number" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="number" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="number" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="text" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="number" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="number" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="text" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="text" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+                <input type="text" className="w-full border border-black rounded px-2 py-1"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+);
+};
+
+export default InvoiceTemplate;

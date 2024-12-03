@@ -2,6 +2,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-slideIn {
+    animation: slideIn 0.3s ease-out forwards;
+}
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+.animate-slideOut {
+    animation: slideOut 0.3s ease-out forwards;
+}
+
+
 
 html {
     --u:  15px;
