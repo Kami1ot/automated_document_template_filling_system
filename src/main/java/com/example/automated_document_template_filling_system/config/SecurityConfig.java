@@ -28,9 +28,13 @@ public class SecurityConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
                         .allowedOrigins("http://localhost:8080") // Укажите адрес вашего React-приложения
-                        .allowedMethods("GET", "POST", "PUT", "DELETE");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowCredentials(true); // Точка с запятой в конце цепочки
             }
         };
     }
+
+
+
 }
 

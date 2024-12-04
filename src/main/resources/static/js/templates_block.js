@@ -129,9 +129,33 @@ export const Templates_block = () => {
             });
 
             if (response.ok) {
-                alert("Документ успешно сформирован!");
+                // Получаем имя файла из заголовков ответа, если оно есть
+                let filename = "document.xlsx";
+                const disposition = response.headers.get('Content-Disposition');
+                if (disposition && disposition.indexOf('filename=') !== -1) {
+                    const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    const matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]) {
+                        filename = matches[1].replace(/['"]/g, '');
+                    }
+                }
+
+                // Получаем Blob из ответа
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+
+                // Создаём ссылку и программно инициируем скачивание
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', filename); // Устанавливаем имя файла
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                alert("Документ успешно сформирован и скачан!");
             } else {
-                alert("Ошибка при формировании документа.");
+                const errorText = await response.text();
+                alert("Ошибка при формировании документа: " + errorText);
             }
         } catch (error) {
             alert("Ошибка соединения с сервером.");
