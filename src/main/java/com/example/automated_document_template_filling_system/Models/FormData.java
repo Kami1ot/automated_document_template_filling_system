@@ -1,6 +1,27 @@
 package com.example.automated_document_template_filling_system.Models;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+
+@Entity
 public class FormData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_email", referencedColumnName = "email", nullable = false)
+    private User user; // Связь через поле email
+
+    @ManyToOne
+    @JoinColumn(name = "temp_name", referencedColumnName = "name", nullable = false)
+    private Templates templates; // Связь через поле email
+
+    @OneToMany(mappedBy = "formData", cascade = CascadeType.ALL, orphanRemoval = true) // Связь с TableRow
+    private List<TableRow> tableRows;
+
     private String invoiceNumber;
     private String invoiceDate;
     private String invoiceTypoNumber;
@@ -16,6 +37,7 @@ public class FormData {
     private String buyerAddress;
     private String buyerIIN;
     private String currency;
+
 
     // Геттеры и сеттеры
     public String getInvoiceNumber() {

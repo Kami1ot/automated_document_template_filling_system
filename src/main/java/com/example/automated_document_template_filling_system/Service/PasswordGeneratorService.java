@@ -15,11 +15,6 @@ public class PasswordGeneratorService {
 
     private static final SecureRandom RANDOM = new SecureRandom();
 
-    /**
-     * Генерирует случайный пароль заданной длины.
-     * @param length Длина пароля.
-     * @return Сгенерированный пароль.
-     */
     public static String generatePassword(int length) {
         if (length < 4) {
             throw new IllegalArgumentException("Длина пароля должна быть не меньше 4 символов");
@@ -27,26 +22,18 @@ public class PasswordGeneratorService {
 
         StringBuilder password = new StringBuilder();
 
-        // Гарантируем наличие хотя бы одного символа из каждой категории
         password.append(UPPERCASE.charAt(RANDOM.nextInt(UPPERCASE.length())));
         password.append(LOWERCASE.charAt(RANDOM.nextInt(LOWERCASE.length())));
         password.append(DIGITS.charAt(RANDOM.nextInt(DIGITS.length())));
         password.append(SPECIAL_CHARACTERS.charAt(RANDOM.nextInt(SPECIAL_CHARACTERS.length())));
 
-        // Добавляем оставшиеся символы из всех возможных
         for (int i = 4; i < length; i++) {
             password.append(ALL_CHARACTERS.charAt(RANDOM.nextInt(ALL_CHARACTERS.length())));
         }
 
-        // Перемешиваем символы
         return shuffleString(password.toString());
     }
 
-    /**
-     * Перемешивает символы в строке.
-     * @param input Входная строка.
-     * @return Перемешанная строка.
-     */
     private static String shuffleString(String input) {
         char[] characters = input.toCharArray();
         for (int i = characters.length - 1; i > 0; i--) {
@@ -58,10 +45,5 @@ public class PasswordGeneratorService {
         return new String(characters);
     }
 
-//    public static void main(String[] args) {
-//        // Пример генерации пароля длиной 12 символов
-//        String password = generatePassword(12);
-//        System.out.println("Сгенерированный пароль: " + password);
-//    }
 }
 

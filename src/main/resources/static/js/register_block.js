@@ -6,11 +6,11 @@ export const Register_block = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [message, setMessage] = useState(""); // Сообщение об ошибке или успехе
-	const navigate = useNavigate(); // Для перенаправления
+	const [message, setMessage] = useState("");
+	const navigate = useNavigate();
 
 	const handleRegister = async (event) => {
-		event.preventDefault(); // Предотвращаем перезагрузку страницы
+		event.preventDefault();
 
 		if (password !== confirmPassword) {
 			setMessage("Пароли не совпадают");
@@ -32,9 +32,9 @@ export const Register_block = () => {
 			if (response.ok) {
 				const result = await response.text();
 				if (result === "Регистрация прошла успешно") {
-					navigate("/login"); // Перенаправляем на страницу входа
+					navigate("/login");
 				} else {
-					setMessage(result); // Показываем сообщение об ошибке
+					setMessage(result);
 				}
 			} else {
 				setMessage("Ошибка при регистрации");

@@ -1,10 +1,9 @@
 // Templates_block.js
 import React, { useState } from "react";
 import "./style.css";
-import InvoiceTemplate from "./InvoiceTemplate"; // Импортируем вынесенный шаблон
-import { initialData } from "./InitialData"; // Импортируем начальные данные
+import InvoiceTemplate from "./InvoiceTemplate";
+import { initialData } from "./InitialData";
 
-// Главный компонент для выбора шаблона
 export const Templates_block = () => {
     const [activeTemplate, setActiveTemplate] = useState(null); // Активный шаблон
     const [templatesData, setTemplatesData] = useState({}); // Данные форм и таблиц для всех шаблонов
@@ -15,7 +14,6 @@ export const Templates_block = () => {
         // Добавьте другие шаблоны здесь
     ];
 
-    // Устанавливаем активный шаблон и инициализируем его данные, если они еще не инициализированы
     const handleTemplateSelection = (id) => {
         setActiveTemplate(id);
         setTemplatesData((prevData) => ({
@@ -24,7 +22,6 @@ export const Templates_block = () => {
         }));
     };
 
-    // Обновляем значения в форме для активного шаблона
     const handleInputChange = (field, value) => {
         setTemplatesData((prevData) => ({
             ...prevData,
@@ -38,7 +35,6 @@ export const Templates_block = () => {
         }));
     };
 
-    // Обновление данных таблицы для активного шаблона
     const handleTableChange = (index, name, value) => {
         setTemplatesData((prevData) => {
             const updatedTableData = [...prevData[activeTemplate].tableData];
@@ -53,7 +49,6 @@ export const Templates_block = () => {
         });
     };
 
-    // Добавление строки в таблицу для активного шаблона
     const addTableRow = () => {
         setTemplatesData((prevData) => ({
             ...prevData,
@@ -81,7 +76,6 @@ export const Templates_block = () => {
         }));
     };
 
-    // Удаление строки из таблицы для активного шаблона
     const deleteTableRow = (index) => {
         setTemplatesData((prevData) => {
             const currentTableData = prevData[activeTemplate].tableData;

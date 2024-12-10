@@ -34,11 +34,10 @@ export const initialData = {
                 originCountryName: "",
                 customsDeclaration: ""
             }
+
+
+
         ]
     },
-    // Добавьте другие шаблоны здесь
-    // "another template": {
-    //     formData: { ... },
-    //     tableData: [ ... ]
-    // }
+
 };

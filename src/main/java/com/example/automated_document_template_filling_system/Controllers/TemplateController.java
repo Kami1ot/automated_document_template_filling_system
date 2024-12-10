@@ -26,6 +26,7 @@ public class TemplateController {
 
         String templateName = templateRequest.getTemplateName();
         logger.info(templateName);
+
         if ("invoice template".equals(templateName)) {
             logger.info("1");
             try {

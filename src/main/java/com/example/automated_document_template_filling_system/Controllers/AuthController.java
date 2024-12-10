@@ -73,7 +73,7 @@ public class AuthController {
         }
 
         User user = userOptional.get();
-        user.setPassword(passwordEncoder.encode(newPassword)); // Хэшируем новый пароль
+        user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
 
         return "Пароль успешно обновлен";

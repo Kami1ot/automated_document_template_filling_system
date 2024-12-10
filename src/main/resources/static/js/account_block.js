@@ -22,7 +22,7 @@ export const Account_block = ({ isAuthenticated, userEmail }) => {
 
 			if (response.ok) {
 				const result = await response.text();
-				setMessage(result); // Сообщение от сервера
+				setMessage(result);
 			} else {
 				setMessage("Ошибка при обновлении пароля");
 			}

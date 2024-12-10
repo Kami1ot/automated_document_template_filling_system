@@ -5,7 +5,6 @@ public class TemplateData {
     private FormData formData;
     private List<TableRow> tableData;
 
-    // Геттеры и сеттеры
     public FormData getFormData() {
         return formData;
     }

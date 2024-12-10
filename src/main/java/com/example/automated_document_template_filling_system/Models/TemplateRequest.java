@@ -4,7 +4,6 @@ public class TemplateRequest {
     private String templateName;
     private TemplateData data;
 
-    // Геттеры и сеттеры
     public String getTemplateName() {
         return templateName;
     }

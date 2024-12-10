@@ -1,6 +1,17 @@
 package com.example.automated_document_template_filling_system.Models;
 
+
+import jakarta.persistence.*;
+
+@Entity
 public class TableRow {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "form_data_id", nullable = false) // Связь через поле form_data_id
+    private FormData formData;
+
     private String productName;
     private String unitCode;
     private String unitSymbol;
@@ -15,7 +26,14 @@ public class TableRow {
     private String originCountryName;
     private String customsDeclaration;
 
-    // Геттеры и сеттеры
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public String getProductName() {
         return productName;
     }
@@ -138,4 +156,5 @@ public class TableRow {
                 ", customsDeclaration='" + customsDeclaration + '\'' +
                 '}';
     }
+
 }
