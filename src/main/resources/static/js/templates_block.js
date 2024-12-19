@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import "./style.css";
 import InvoiceTemplate from "./InvoiceTemplate";
 import { initialData } from "./InitialData";
+import { useNavigate } from "react-router-dom";
 
-export const Templates_block = () => {
+export const Templates_block = ({ isAuthenticated, userEmail }) => {
     const [activeTemplate, setActiveTemplate] = useState(null); // Активный шаблон
     const [templatesData, setTemplatesData] = useState({}); // Данные форм и таблиц для всех шаблонов
+    const navigate = useNavigate();
 
     // Пример шаблонов
     const templates = [
@@ -118,6 +120,7 @@ export const Templates_block = () => {
                 },
                 body: JSON.stringify({
                     templateName: activeTemplate,
+                    userEmail: userEmail,
                     data: templatesData[activeTemplate],
                 }),
             });
@@ -160,7 +163,8 @@ export const Templates_block = () => {
 
     return (
         <div className="flex items-center justify-center mt-2">
-            <div className="templates-block bg-white/75 shadow-lg rounded-lg p-6 backdrop-blur-lg">
+            {isAuthenticated ?(
+            <div className="templates-block bg-white/75 shadow-lg rounded-lg p-6 backdrop-blur-lg w-[55%]">
                 <div className="template-buttons gap-2 mb-4">
                     <span>Выберите документ:</span>
                     {templates.map((template) => (
@@ -198,6 +202,27 @@ export const Templates_block = () => {
                     </div>
                 )}
             </div>
+            ):(
+                <div className="w-[400px] bg-white/75 text-neutral-950 shadow-lg border border-neutral-300 rounded-lg min-h-[200px] flex flex-col items-center justify-center backdrop-blur-lg p-6">
+                    <h1 className="text-xl text-red-500 mb-4">
+                        Вы не вошли в аккаунт
+                    </h1>
+                    <div className="flex flex-col gap-2 w-full">
+                        <button
+                            onClick={() => navigate("/login")}
+                            className="w-full bg-neutral-950 text-primary-50 py-2 rounded-md hover:bg-neutral-900 transition-all duration-300 ease-out transform hover:scale-105"
+                        >
+                            Войти
+                        </button>
+                        <button
+                            onClick={() => navigate("/register")}
+                            className="w-full bg-neutral-950 text-primary-50 py-2 rounded-md hover:bg-neutral-900 transition-all duration-300 ease-out transform hover:scale-105"
+                        >
+                            Зарегистрироваться
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

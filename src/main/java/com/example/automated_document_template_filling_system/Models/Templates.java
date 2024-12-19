@@ -14,6 +14,21 @@ public class Templates {
     private String name;
     private String temp_path;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTemp_path() {
+        return temp_path;
+    }
+
+    public void setTemp_path(String temp_path) {
+        this.temp_path = temp_path;
+    }
 
     public void setId(Long id) {
         this.id = id;

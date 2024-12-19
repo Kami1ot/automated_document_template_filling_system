@@ -69,7 +69,7 @@ export const Account_block = ({ isAuthenticated, userEmail }) => {
 							Update Password
 						</button>
 						{message && (
-							<div className="mt-4 text-center text-red-500">{message}</div>
+							<div className="mt-4 text-center text-green-600">{message}</div>
 						)}
 					</div>
 				</div>

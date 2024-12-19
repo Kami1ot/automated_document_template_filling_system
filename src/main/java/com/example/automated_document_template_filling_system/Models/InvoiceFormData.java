@@ -6,7 +6,7 @@ import java.util.List;
 
 
 @Entity
-public class FormData {
+public class InvoiceFormData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,14 +19,47 @@ public class FormData {
     @JoinColumn(name = "temp_name", referencedColumnName = "name", nullable = false)
     private Templates templates; // Связь через поле email
 
-    @OneToMany(mappedBy = "formData", cascade = CascadeType.ALL, orphanRemoval = true) // Связь с TableRow
-    private List<TableRow> tableRows;
+    @OneToMany(mappedBy = "invoiceFormData", cascade = CascadeType.ALL, orphanRemoval = true) // Связь с InvoiceTableRow
+    private List<InvoiceTableRow> invoiceTableRows;
 
     private String invoiceNumber;
     private String invoiceDate;
     private String invoiceTypoNumber;
     private String invoiceTypoDate;
     private String sellerName;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Templates getTemplates() {
+        return templates;
+    }
+
+    public void setTemplates(Templates templates) {
+        this.templates = templates;
+    }
+
+    public List<InvoiceTableRow> getInvoiceTableRows() {
+        return invoiceTableRows;
+    }
+
+    public void setInvoiceTableRows(List<InvoiceTableRow> invoiceTableRows) {
+        this.invoiceTableRows = invoiceTableRows;
+    }
+
     private String sellerAddress;
     private String sellerIIN;
     private String fromField;
@@ -162,7 +195,7 @@ public class FormData {
 
     @Override
     public String toString() {
-        return "FormData{" +
+        return "InvoiceFormData{" +
                 "invoiceNumber='" + invoiceNumber + '\'' +
                 ", invoiceDate='" + invoiceDate + '\'' +
                 ", invoiceTypoNumber='" + invoiceTypoNumber + '\'' +

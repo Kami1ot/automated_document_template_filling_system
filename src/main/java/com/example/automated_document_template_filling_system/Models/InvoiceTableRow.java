@@ -4,18 +4,28 @@ package com.example.automated_document_template_filling_system.Models;
 import jakarta.persistence.*;
 
 @Entity
-public class TableRow {
+public class InvoiceTableRow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "form_data_id", nullable = false) // Связь через поле form_data_id
-    private FormData formData;
+    @JoinColumn(name = "invoice_form_data_id", nullable = false) // Связь через поле form_data_id
+    private InvoiceFormData invoiceFormData;
 
     private String productName;
     private String unitCode;
     private String unitSymbol;
     private String quantity;
+
+    public InvoiceFormData getInvoiceFormData() {
+        return invoiceFormData;
+    }
+
+
+    public void setInvoiceFormData(InvoiceFormData invoiceFormData) {
+        this.invoiceFormData = invoiceFormData;
+    }
+
     private String price;
     private String totalWithoutTax;
     private String exciseSum;
@@ -140,7 +150,7 @@ public class TableRow {
 
     @Override
     public String toString() {
-        return "TableRow{" +
+        return "InvoiceTableRow{" +
                 "productName='" + productName + '\'' +
                 ", unitCode='" + unitCode + '\'' +
                 ", unitSymbol='" + unitSymbol + '\'' +

@@ -21,7 +21,7 @@ const InvoiceTemplate = ({
                         от 26.12.2011 № 1137
                     </span>
                 </div>
-                <div className="text-left w-2/4">
+                <div className="text-left">
                     {/* Поля формы */}
                     <div className="max-h-[22px] text-xs">
                         СЧЕТ-ФАКТУРА №
@@ -184,7 +184,9 @@ const InvoiceTemplate = ({
 
             {/* Таблица */}
             <br/>
-            <table border="1" className="w-full text-center border-collapse border border-gray-300 text-xs">
+            <div className="overflow-x-auto mt-4">
+            <table border="1"
+                   className="w-full text-center border-collapse border border-gray-300 text-xs">
                 <thead>
                 <tr>
                     <th rowSpan="2" className="border border-gray-300 px-2 py-1">
@@ -389,6 +391,7 @@ const InvoiceTemplate = ({
                 ))}
                 </tbody>
             </table>
+            </div>
 
             <button
                 onClick={addTableRow}

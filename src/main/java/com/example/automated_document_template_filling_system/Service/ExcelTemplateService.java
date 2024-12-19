@@ -1,11 +1,8 @@
 package com.example.automated_document_template_filling_system.Service;
-import com.example.automated_document_template_filling_system.Controllers.TemplateController;
-import com.example.automated_document_template_filling_system.Models.FormData;
-import com.example.automated_document_template_filling_system.Models.TableRow;
-import com.example.automated_document_template_filling_system.Models.TemplateData;
-import org.apache.poi.ss.extractor.ExcelExtractor;
+import com.example.automated_document_template_filling_system.Models.InvoiceFormData;
+import com.example.automated_document_template_filling_system.Models.InvoiceTableRow;
+import com.example.automated_document_template_filling_system.Models.InvoiceTemplateData;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -20,7 +17,7 @@ import org.slf4j.LoggerFactory;
 @Service
 public class ExcelTemplateService {
     private static final Logger logger = LoggerFactory.getLogger(ExcelTemplateService.class);
-    public ByteArrayOutputStream fillTemplate(TemplateData templateData) throws IOException {
+    public ByteArrayOutputStream fillTemplate(InvoiceTemplateData invoiceTemplateData) throws IOException {
         ClassPathResource resource = new ClassPathResource("templates/excel_templates/vat_new_invoice_fact.xlsx");
         if (!resource.exists()) {
             logger.error("Template file not found!");
@@ -35,9 +32,9 @@ public class ExcelTemplateService {
 
         Sheet sheet = workbook.getSheetAt(0);
 
-        fillFormData(sheet, templateData.getFormData());
+        fillFormData(sheet, invoiceTemplateData.getFormData());
 
-        fillTableData(sheet, templateData.getTableData());
+        fillTableData(sheet, invoiceTemplateData.getTableData());
 
         logger.info("fillTemplate: Before writing workbook");
 
@@ -52,7 +49,7 @@ public class ExcelTemplateService {
         return outputStream;
     }
 
-    private void fillFormData(Sheet sheet, FormData formData) {
+    private void fillFormData(Sheet sheet, InvoiceFormData invoiceFormData) {
         String[] monthsGenitive = {
                 "января",   // 1
                 "февраля",  // 2
@@ -69,11 +66,11 @@ public class ExcelTemplateService {
         };
         Row row = sheet.getRow(6);
         Cell cell = row.getCell(4);
-        cell.setCellValue(formData.getInvoiceNumber());
+        cell.setCellValue(invoiceFormData.getInvoiceNumber());
 
         cell = row.getCell(7);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate invoiceDate = LocalDate.parse(formData.getInvoiceDate(), formatter);
+        LocalDate invoiceDate = LocalDate.parse(invoiceFormData.getInvoiceDate(), formatter);
         int invoiceDay = invoiceDate.getDayOfMonth();
         cell.setCellValue(invoiceDay);
         cell = row.getCell(9);
@@ -83,13 +80,13 @@ public class ExcelTemplateService {
         String monthAndYear = invoiceMonthName + " " + invoiceYear;
         cell.setCellValue(monthAndYear);
 
-        if (!Objects.equals(formData.getInvoiceTypoNumber(), "")){
+        if (!Objects.equals(invoiceFormData.getInvoiceTypoNumber(), "")){
             row = sheet.getRow(7);
             cell = row.getCell(4);
-            cell.setCellValue(formData.getInvoiceTypoNumber());
+            cell.setCellValue(invoiceFormData.getInvoiceTypoNumber());
 
             cell = row.getCell(7);
-            LocalDate invoiceTypoDate = LocalDate.parse(formData.getInvoiceTypoDate(), formatter);
+            LocalDate invoiceTypoDate = LocalDate.parse(invoiceFormData.getInvoiceTypoDate(), formatter);
             int invoiceTypoDay = invoiceTypoDate.getDayOfMonth();
             cell.setCellValue(invoiceTypoDay);
             cell = row.getCell(9);
@@ -102,55 +99,55 @@ public class ExcelTemplateService {
 
         row = sheet.getRow(9);
         cell = row.getCell(1);
-        cell.setCellValue(formData.getSellerName());
+        cell.setCellValue(invoiceFormData.getSellerName());
 
         row = sheet.getRow(10);
         cell = row.getCell(1);
-        cell.setCellValue(formData.getSellerAddress());
+        cell.setCellValue(invoiceFormData.getSellerAddress());
 
         row = sheet.getRow(11);
         cell = row.getCell(2);
-        cell.setCellValue(formData.getSellerIIN());
+        cell.setCellValue(invoiceFormData.getSellerIIN());
 
         row = sheet.getRow(12);
         cell = row.getCell(4);
-        cell.setCellValue(formData.getFromField());
+        cell.setCellValue(invoiceFormData.getFromField());
 
         row = sheet.getRow(13);
         cell = row.getCell(4);
-        cell.setCellValue(formData.getWhereField());
+        cell.setCellValue(invoiceFormData.getWhereField());
 
         row = sheet.getRow(14);
         cell = row.getCell(5);
-        cell.setCellValue(formData.getPayNumber());
+        cell.setCellValue(invoiceFormData.getPayNumber());
         cell = row.getCell(9);
-        cell.setCellValue(formData.getPayDate());
+        cell.setCellValue(invoiceFormData.getPayDate());
 
         row = sheet.getRow(15);
         cell = row.getCell(1);
-        cell.setCellValue(formData.getBuyerName());
+        cell.setCellValue(invoiceFormData.getBuyerName());
 
         row = sheet.getRow(16);
         cell = row.getCell(1);
-        cell.setCellValue(formData.getBuyerAddress());
+        cell.setCellValue(invoiceFormData.getBuyerAddress());
 
         row = sheet.getRow(17);
         cell = row.getCell(2);
-        cell.setCellValue(formData.getBuyerIIN());
+        cell.setCellValue(invoiceFormData.getBuyerIIN());
 
         row = sheet.getRow(18);
         cell = row.getCell(4);
-        cell.setCellValue(formData.getCurrency());
+        cell.setCellValue(invoiceFormData.getCurrency());
 
 
 
     }
 
-    private void fillTableData(Sheet sheet, List<TableRow> tableData) {
+    private void fillTableData(Sheet sheet, List<InvoiceTableRow> tableData) {
         int startRowIndex = 23;
 
         for (int i = 0; i < tableData.size(); i++) {
-            TableRow tableRowData = tableData.get(i);
+            InvoiceTableRow invoiceTableRowData = tableData.get(i);
             int currentRowIndex = startRowIndex + i;
 
             shiftRows(sheet, currentRowIndex);
@@ -158,47 +155,47 @@ public class ExcelTemplateService {
             Row row = sheet.createRow(currentRowIndex);
 
             Cell cell = row.createCell(0);
-            cell.setCellValue(tableRowData.getProductName());
+            cell.setCellValue(invoiceTableRowData.getProductName());
             cell = row.createCell(1);
             cell = row.createCell(2);
-            cell.setCellValue(tableRowData.getUnitCode());
+            cell.setCellValue(invoiceTableRowData.getUnitCode());
 
             cell = row.createCell(3);
-            cell.setCellValue(tableRowData.getUnitSymbol());
+            cell.setCellValue(invoiceTableRowData.getUnitSymbol());
             cell = row.createCell(4);
 
             cell = row.createCell(5);
-            cell.setCellValue(tableRowData.getQuantity());
+            cell.setCellValue(invoiceTableRowData.getQuantity());
 
             cell = row.createCell(6);
-            cell.setCellValue(tableRowData.getPrice());
+            cell.setCellValue(invoiceTableRowData.getPrice());
             cell = row.createCell(7);
 
             cell = row.createCell(8);
-            cell.setCellValue(tableRowData.getTotalWithoutTax());
+            cell.setCellValue(invoiceTableRowData.getTotalWithoutTax());
             cell = row.createCell(9);
 
             cell = row.createCell(10);
-            cell.setCellValue(tableRowData.getExciseSum());
+            cell.setCellValue(invoiceTableRowData.getExciseSum());
 
             cell = row.createCell(11);
-            cell.setCellValue(tableRowData.getTaxRate());
+            cell.setCellValue(invoiceTableRowData.getTaxRate());
 
             cell = row.createCell(12);
-            cell.setCellValue(tableRowData.getTaxSum());
+            cell.setCellValue(invoiceTableRowData.getTaxSum());
 
             cell = row.createCell(13);
-            cell.setCellValue(tableRowData.getTotalWithTax());
+            cell.setCellValue(invoiceTableRowData.getTotalWithTax());
             cell = row.createCell(14);
 
             cell = row.createCell(15);
-            cell.setCellValue(tableRowData.getOriginCountryCode());
+            cell.setCellValue(invoiceTableRowData.getOriginCountryCode());
 
             cell = row.createCell(16);
-            cell.setCellValue(tableRowData.getOriginCountryName());
+            cell.setCellValue(invoiceTableRowData.getOriginCountryName());
 
             cell = row.createCell(17);
-            cell.setCellValue(tableRowData.getCustomsDeclaration());
+            cell.setCellValue(invoiceTableRowData.getCustomsDeclaration());
 
         }
     }
