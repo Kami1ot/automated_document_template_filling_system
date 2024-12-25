@@ -1,68 +1,13 @@
-package com.example.automated_document_template_filling_system.Models;
+package com.example.automated_document_template_filling_system.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-
-import java.util.List;
-
-
-@Entity
-public class InvoiceFormData {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+// DTO для InvoiceFormData
+public class InvoiceFormDataDTO {
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_email", referencedColumnName = "email", nullable = false)
-    @JsonIgnore // Игнорируем это поле при сериализации в JSON
-    private User user; // Связь через поле email
-
-    @ManyToOne
-    @JoinColumn(name = "temp_name", referencedColumnName = "name", nullable = false)
-    @JsonIgnore
-    private Templates templates; // Связь через поле email
-
-    @OneToMany(mappedBy = "invoiceFormData", cascade = CascadeType.ALL, orphanRemoval = true) // Связь с InvoiceTableRow
-    private List<InvoiceTableRow> invoiceTableRows;
-
     private String invoiceNumber;
     private String invoiceDate;
     private String invoiceTypoNumber;
     private String invoiceTypoDate;
     private String sellerName;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Templates getTemplates() {
-        return templates;
-    }
-
-    public void setTemplates(Templates templates) {
-        this.templates = templates;
-    }
-
-    public List<InvoiceTableRow> getInvoiceTableRows() {
-        return invoiceTableRows;
-    }
-
-    public void setInvoiceTableRows(List<InvoiceTableRow> invoiceTableRows) {
-        this.invoiceTableRows = invoiceTableRows;
-    }
-
     private String sellerAddress;
     private String sellerIIN;
     private String fromField;
@@ -74,8 +19,37 @@ public class InvoiceFormData {
     private String buyerIIN;
     private String currency;
 
+    // Конструктор
+    public InvoiceFormDataDTO(String invoiceNumber, String invoiceDate, String invoiceTypoNumber,
+                              String invoiceTypoDate, String sellerName, String sellerAddress, String sellerIIN,
+                              String fromField, String whereField, String payNumber, String payDate,
+                              String buyerName, String buyerAddress, String buyerIIN, String currency) {
+        this.invoiceNumber = invoiceNumber;
+        this.invoiceDate = invoiceDate;
+        this.invoiceTypoNumber = invoiceTypoNumber;
+        this.invoiceTypoDate = invoiceTypoDate;
+        this.sellerName = sellerName;
+        this.sellerAddress = sellerAddress;
+        this.sellerIIN = sellerIIN;
+        this.fromField = fromField;
+        this.whereField = whereField;
+        this.payNumber = payNumber;
+        this.payDate = payDate;
+        this.buyerName = buyerName;
+        this.buyerAddress = buyerAddress;
+        this.buyerIIN = buyerIIN;
+        this.currency = currency;
+    }
 
     // Геттеры и сеттеры
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getInvoiceNumber() {
         return invoiceNumber;
     }
@@ -194,26 +168,5 @@ public class InvoiceFormData {
 
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    @Override
-    public String toString() {
-        return "InvoiceFormData{" +
-                "invoiceNumber='" + invoiceNumber + '\'' +
-                ", invoiceDate='" + invoiceDate + '\'' +
-                ", invoiceTypoNumber='" + invoiceTypoNumber + '\'' +
-                ", invoiceTypoDate='" + invoiceTypoDate + '\'' +
-                ", sellerName='" + sellerName + '\'' +
-                ", sellerAddress='" + sellerAddress + '\'' +
-                ", sellerIIN='" + sellerIIN + '\'' +
-                ", fromField='" + fromField + '\'' +
-                ", whereField='" + whereField + '\'' +
-                ", payNumber='" + payNumber + '\'' +
-                ", payDate='" + payDate + '\'' +
-                ", buyerName='" + buyerName + '\'' +
-                ", buyerAddress='" + buyerAddress + '\'' +
-                ", buyerIIN='" + buyerIIN + '\'' +
-                ", currency='" + currency + '\'' +
-                '}';
     }
 }
