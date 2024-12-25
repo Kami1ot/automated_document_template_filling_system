@@ -166,11 +166,11 @@ export const Templates_block = ({ isAuthenticated, userEmail }) => {
             {isAuthenticated ?(
             <div className="templates-block bg-white/75 shadow-lg rounded-lg p-6 backdrop-blur-lg w-[55%]">
                 <div className="template-buttons gap-2 mb-4">
-                    <span>Выберите документ:</span>
+                    <span>Выберите документ:  </span>
                     {templates.map((template) => (
                         <button
                             key={template.id}
-                            className={`px-4 py-2 rounded-md border ${
+                            className={`px-4 py-2 rounded-md border transition-all duration-300 ease-out transform hover:scale-105 ${
                                 activeTemplate === template.id ? "bg-primary-500 text-white" : "bg-white text-black"
                             }`}
                             onClick={() => handleTemplateSelection(template.id)}

@@ -1,7 +1,10 @@
 import React from "react";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 export const Home_block = () => {
+	const navigate = useNavigate();
+
   return (
     <div className="flex flex-col items-center mt-2">
                 	<div className="w-[400px] bg-white/75 text-neutral-950 shadow-lg border border-neutral-300 rounded-lg min-h-[500px] flex flex-col items-center justify-center px-8 backdrop-blur-lg">
@@ -21,7 +24,8 @@ export const Home_block = () => {
 							</ul>
 
 						</div>
-						<button className="bg-black text-white py-3 px-6 rounded-md w-full font-bold transition-all duration-300 ease-out transform hover:scale-105">
+						<button className="bg-black text-white py-3 px-6 rounded-md w-full font-bold transition-all duration-300 ease-out transform hover:scale-105"
+								onClick={() => navigate("/templates")}>
 						Приступить
     	  </button>
     	</div> 
